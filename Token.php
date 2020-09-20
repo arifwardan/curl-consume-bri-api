@@ -1,5 +1,7 @@
 <?php
-require_once "../core.php";
+require_once "core.php";
+
+
 class Token{
     public function getToken()
     {
@@ -23,4 +25,4 @@ class Token{
 }
 
 $getToken = new Token;
-print_r($getToken->getToken());
+// print_r($getToken->getToken());

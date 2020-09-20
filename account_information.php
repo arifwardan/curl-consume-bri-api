@@ -1,16 +1,18 @@
 <?php
+require_once "Signature.php";
+require_once "Token.php";
 
-require_once "core.php";
-
+$accesstoken = new Token;
+$sign = new Signature;
 $NoRek = REKENING;
 $secret = CONSUMER_SECRET;
 $timestamp = gmdate("Y-m-d\TH:i:s.000\Z");
-$token = $accesstoken;
+$token = $accesstoken->getToken();
 $path = "/sandbox/v2/inquiry/".$NoRek;
 $verb = "GET";
 $body="";
 
-$base64sign = generateSignature($path,$verb,$token,$timestamp,$body,$secret);
+$base64sign = $sign->generateSignature($path,$verb,$token,$timestamp,$body,$secret);
 
 $urlGet ="https://partner.api.bri.co.id/sandbox/v2/inquiry/".$NoRek;
 $chGet = curl_init();
